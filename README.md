@@ -1,6 +1,9 @@
 # spring-cloud-dataflow-demo
+## Prerequisite:
+1. Docker on Mac, https://docs.docker.com/docker-for-mac/install
+2. JDK/Maven on Mac, https://maven.apache.org/install.html
 
-## Setup labs on localhost with docker
+## Setup Spring Cloud Dataflow labs on localhost with docker
 https://cloud.spring.io/spring-cloud-dataflow/#quick-start
 
 1. Download docker-compose.yml
@@ -50,10 +53,11 @@ http://localhost:9393/dashboard/#/apps, navigate to "ADD APPLICATION(S) > Regist
 - URI:    file://tmp/processor-demo-0.0.1-SNAPSHOT.jar
 
 ## Deploy stream with the app
-http://localhost:9393/dashboard/#/streams/create
+http://localhost:9393/dashboard/#/streams/create, use `time` source(input) and `log` as output(sink). 
 - Name:   time2log
 - Definitions:    time | processor-demo | log
 
 ## Confirm
 1. http://localhost:9393/dashboard/#/runtime/apps > time2log.log > stdout
-2. `docker exec -it dataflow-server tail -f /path/stdout_0.log`
+2. `docker exec -it dataflow-server tail -f /<path>/stdout_0.log`
+3. Time format "06/06/18 21:30:51" is broken into 2 lines because ' ' is replaced by '\r\n' in the sample processor. 
