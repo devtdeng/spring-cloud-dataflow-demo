@@ -20,6 +20,7 @@
 *.rar
 
 # Project Files #
+.DS_Store
 .project
 .classpath
 .settings/
